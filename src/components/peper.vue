@@ -21,7 +21,9 @@
     <div id="set" class="setting">
       <i class="custom-icon el-icon-download" style="margin-left:20px" @click="download()"></i>
       <div class="set_paper">设为壁纸</div> 
-      <i id="like" class="custom-icon el-icon-star-off" style="margin-left:10px;" @click="addlike()"></i> 
+      <i id="like" class="custom-icon el-icon-star-off" style="margin-left:10px;" @click="addlike()"
+      :class="isFavorate === true? 'custom-icon-font': ''">
+      </i> 
     </div>
   </div>
 </template>
@@ -34,12 +36,14 @@ export default {
       // srcList: [],
       curUrl: '',
       curPos: 0,
+      isFavorate: false
     }
   },
   methods: {
     open(index,pos) {
       this.curUrl = index.url
       this.curPos = pos
+      this.isFavorate = this.result[this.curPos].favorate
       document.getElementById('light').style.display='block'
       document.getElementById('fade').style.display='block'
       document.getElementById('set').style.display='block'
@@ -53,12 +57,14 @@ export default {
       if(this.curPos !== this.result.length-1){
         this.curPos ++
         this.curUrl = this.result[this.curPos].url
+        this.isFavorate = this.result[this.curPos].favorate
       }
     },
     previous () {
       if(this.curPos !== 0){
         this.curPos --
         this.curUrl = this.result[this.curPos].url
+        this.isFavorate = this.result[this.curPos].favorate
       }
     },
     addlike() {
@@ -71,9 +77,13 @@ export default {
         // success is 1 execute add
         console.log(res.data)
         if(res.data.success === '1'){
-          document.getElementById('like').style.color = 'red'
+          // document.getElementById('like').style.color = 'red'
+          this.result[this.curPos].favorate = true
+          this.isFavorate = true
         }else{
-          document.getElementById('like').style.color = 'black'
+          // document.getElementById('like').style.color = 'black'
+          this.result[this.curPos].favorate = false
+          this.isFavorate = false
         }
       }).catch((err) => {
         console.log(err)
@@ -87,7 +97,8 @@ export default {
       for(let d in res.data) {
         this.result.push({
           id: res.data[d].wp_id,
-          url: res.data[d].wp_url
+          url: res.data[d].wp_url,
+          favorate: res.data[d].favorate
         })
         // this.srcList.push(res.data[d].wp_url)
       }
@@ -184,5 +195,8 @@ export default {
   margin-right: -40px;
   margin-top: 400px;
   color: white;
+}
+.custom-icon-font{
+  color: red
 }
 </style>

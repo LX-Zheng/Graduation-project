@@ -21,7 +21,10 @@
     <div id="set" class="setting">
       <i class="custom-icon el-icon-download" style="margin-left:20px" @click="download()"></i>
       <div class="set_paper">设为壁纸</div> 
-      <i id="like" class="custom-icon el-icon-star-off" style="margin-left:10px;" @click="addlike()"></i> 
+      <i id="like" class="custom-icon el-icon-star-off" style="margin-left:10px;" @click="addlike()"
+      :style="{color:'red'}"
+      >
+      </i> 
     </div>
   </div>
 </template>
@@ -70,10 +73,12 @@ export default {
         // success is 0 execute delete
         // success is 1 execute add
         console.log(res.data)
-        if(res.data.success === '1'){
-          document.getElementById('like').style.color = 'red'
-        }else{
-          document.getElementById('like').style.color = 'black'
+        if(res.data.success === '0'){
+          console.log('delete')
+          delete this.result[this.curPos]
+          console.log(this.result)
+          this.curPos --
+          this.curUrl = this.result[this.curPos].url
         }
       }).catch((err) => {
         console.log(err)
