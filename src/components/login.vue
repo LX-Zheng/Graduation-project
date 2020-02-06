@@ -31,7 +31,8 @@ export default {
                 }
             }).then((response) => {
                 if(response.data.status === 1) {
-                    window.location.href= "/about"
+                    console.log(response.data.u_name)
+                    this.$store.dispatch('login', response.data.u_name)
                 }
             }).catch((err) => {
                 console.log(err);

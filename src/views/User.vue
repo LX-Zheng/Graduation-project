@@ -2,7 +2,7 @@
   <div id="user">
     <div class="user_nav">
       <div class="state">
-        <info msg="未登录" @click.native="contentView()" />
+        <info @click.native="contentView()" />
       </div>
       <!-- <ul>
         <li><img src="../assets/icon/download.svg" /><div class="fdesign">下载管理</div></li>

@@ -75,7 +75,7 @@ export default {
         console.log(res.data)
         if(res.data.success === '0'){
           console.log('delete')
-          delete this.result[this.curPos]
+          this.result.splice(this.curPos)
           console.log(this.result)
           this.curPos --
           this.curUrl = this.result[this.curPos].url

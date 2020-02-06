@@ -1,19 +1,24 @@
 <template>
   <div id="info">
     <el-avatar :size="40">user</el-avatar>
-    <p>{{ msg }}</p>
+    <p>{{ getName }}</p>
   </div>
 </template>
 <script>
 export default {
   props: {
-    msg: String
+    
   },
   data () {
     return {
       
     }
   },
+  computed: {
+    getName() {
+      return this.$store.state.username
+    }
+  }
 }
 </script>
 <style>
