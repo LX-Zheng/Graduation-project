@@ -2,7 +2,8 @@
   <div>
     <div v-for="(index,pos) in result" :key="pos">
       <el-card :body-style="{ padding: '3px' }" class="table" @click.native="open(index,pos)">
-        <el-image 
+        <el-image
+          v-start="{ wp_id: index.id, u_id: getId}"
           style="width: 100%; height: 100%" 
           :src="index.url" 
           lazy/>
@@ -106,6 +107,11 @@ export default {
     }).catch((err) => {
       console.log(err)
     })
+  },
+  computed: {
+    getId() {
+      return this.$store.state.u_id
+    }
   }
 }
 </script>

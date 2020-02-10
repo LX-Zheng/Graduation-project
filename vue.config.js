@@ -4,7 +4,11 @@ module.exports = {
         host: "localhost", 
         port: '8080',
         https: false,   //是否使用https协议
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        },
         hotOnly: false, //是否开启热更新
+        disableHostCheck: true,
         proxy: {
             '/api': {
                 target: 'http://127.0.0.1:5000', //API服务器的地址

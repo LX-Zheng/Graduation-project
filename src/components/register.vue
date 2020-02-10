@@ -1,8 +1,13 @@
 <template>
-  <div id="login">
-    <div class="title">用户登录</div>
+  <div id="register">
+    <div class="title">用户注册</div>
     <div>
-      <el-input placeholder="请输入账号" v-model="account">
+      <el-input placeholder="请输入昵称" v-model="name">
+        <template slot="prepend">
+          <i class="el-icon-user" />
+        </template>
+      </el-input>
+      <el-input placeholder="请输入邮箱" v-model="account">
         <template slot="prepend">
           <i class="el-icon-user" />
         </template>
@@ -12,66 +17,57 @@
           <i class="el-icon-lock" />
         </template>
       </el-input>
-      </div>
-      <button class="button" @click="login()">登录</button>
-      <div class="register" @click="register"><u>注册</u></div>
+    </div>
+    <button class="button" @click="register">注册</button>
+     <div class="login" @click="login"><u>登录</u></div>
   </div>
 </template>
-
 <script>
 export default {
   data() {
     return {
+      name: '',
       account: '',
       password: ''
-   }
+    }
   },
   methods: {
-    login() {
-      if(this.account === '' || this.params === ''){
+    register() {
+      if(this.name === '' || this.account === '' || this.password === ''){
         this.$notify({
           title: '错误',
-          message: '请输入账号和用户名',
+          message: '请填写完整的信息',
           type: 'warning'
         })
       } else {
-        this.axios.get('/api/login/', {
+        this.axios.get('/userReg', {
           params: {
+            name: this.name,
             account: this.account,
             password: this.password
           }
-        }).then((response) => {
-          if(response.data.status === 1) {
-            console.log(response.data.u_name)
-            this.$store.dispatch('login', response.data.u_name)
+        }).then((res) => {
+          console.log(res)
+          if(res.data.status === 1) {
             this.$notify({
               title: '成功',
-              message: '登录成功',
+              message: '注册成功',
               type: 'success'
-            })
-            document.getElementById('content').style.display = "none"
-            document.getElementById('box').style.display = "none"
-          } else {
-            this.$notify({
-              title: '失败',
-              message: '账户或密码不正确',
-              type: 'warning'
             })
           }
         }).catch((err) => {
-          console.log(err);
+          console.log(err)
         })
       }
     },
-    register() {
-      this.$emit("getChildData", "register")
+    login() {
+      this.$emit("getChildData", "login")
     }
   }
 }
 </script>
-
-<style scoped>
-#login {
+<style>
+#register {
   width: 260px;
 }
 .title {
@@ -79,9 +75,6 @@ export default {
   height: 40px;
   line-height: 40px;
   text-align: center;
-}
-.register {
-  margin-top: 10px;
 }
 .button {
   outline: none;
@@ -95,5 +88,8 @@ export default {
   padding: 12px 20px;
   font-weight: 500;
   font-size: 14px;
+}
+.login {
+  margin-top: 10px;
 }
 </style>

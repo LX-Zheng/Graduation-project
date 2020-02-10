@@ -1,6 +1,6 @@
 <template>
   <div id="favorate">
-    <Child :res='result'  />
+    <Child :res='result' />
   </div>
 </template>
 <script>

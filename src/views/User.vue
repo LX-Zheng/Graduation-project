@@ -2,12 +2,8 @@
   <div id="user">
     <div class="user_nav">
       <div class="state">
-        <info @click.native="contentView()" />
+        <Info />
       </div>
-      <!-- <ul>
-        <li><img src="../assets/icon/download.svg" /><div class="fdesign">下载管理</div></li>
-        <li><img src="../assets/icon/collection.svg" /><div class="fdesign">我的收藏</div></li>
-      </ul> -->
       <ul>
         <li v-for="(m,index) in content" @click="doActive(index)" :key="m" :class="{active:index==current}">
           <img :src="require(`../assets/icon/`+imgSrc[index]+`.svg`)" />
@@ -16,24 +12,22 @@
       </ul>
     </div>
     <div class="content">
-      <Login v-show="contentShow===0" />
       <Favorate v-show="contentShow===2" />
     </div>
   </div>
 </template>
 <script>
 import Info from '@/components/info'
-import Login from '@/components/login'
-import Favorate from '@/components/favorate'
+// import Favorate from '@/components/favorate'
 
 export default {
   components: {
     Info,
-    Login,
-    Favorate,
+    Favorate:resolve => require(['@/components/favorate'], resolve),
   },
   data () {
     return {
+      choice: 'login',
       contentShow: 0,
       current: 0,
       content: ['下载管理', '我的收藏'],
@@ -45,9 +39,6 @@ export default {
       this.current = index;
       this.contentShow = index + 1;       
     },
-    contentView() {
-      this.contentShow = 0;
-    }
   }  
 }
 </script>

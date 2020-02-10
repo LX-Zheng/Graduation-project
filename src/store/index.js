@@ -7,7 +7,8 @@ export default new Vuex.Store({
   // global variable
   state: {
     username: '未登录',
-    user_state: false
+    user_state: false,
+    u_id: 2  // test
   },
   // monitor the change of state value in real time
   getters: {
