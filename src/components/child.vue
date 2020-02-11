@@ -66,7 +66,7 @@ export default {
     },
     addlike() {
       this.axios.post('/api/addPaper', {
-        u_id: 2,
+        u_id: this.$store.state.u_id,
         wp_id: this.result[this.curPos].id,
         wp_url: this.result[this.curPos].url
       }).then((res) => {

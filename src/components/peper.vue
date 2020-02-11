@@ -71,13 +71,12 @@ export default {
     },
     addlike() {
       this.axios.post('/api/addPaper', {
-        u_id: 2,
+        u_id: this.u_id,
         wp_id: this.result[this.curPos].id,
         wp_url: this.result[this.curPos].url
       }).then((res) => {
         // success is 0 execute delete
         // success is 1 execute add
-        console.log(res.data)
         if(res.data.success === '1'){
           // document.getElementById('like').style.color = 'red'
           this.result[this.curPos].favorate = true

@@ -16,7 +16,7 @@ export default {
   },
   created: function() {
     this.axios.post('/api/getLoad', {
-      u_id: 2
+      u_id: this.$store.state.u_id
     }).then((res) => {
       for(let d in res.data) {
         this.result.push({
@@ -24,7 +24,6 @@ export default {
           url: res.data[d].wp_url
         })
       }
-      console.log(this.result)
     }).catch((err) => {
       console.log(err)
     })

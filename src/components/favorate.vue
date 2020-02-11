@@ -1,6 +1,6 @@
 <template>
   <div id="favorate">
-    <Child :res='result' />
+    <Child :res='result'/>
   </div>
 </template>
 <script>
@@ -18,7 +18,7 @@ export default {
   },
   created: function() {
     this.axios.post('/api/getFavorate', {
-      u_id: 2
+      u_id: this.$store.state.u_id
     }).then((res) => {
       // console.log(res.data)
       for(let d in res.data) {

@@ -12,8 +12,8 @@
       </ul>
     </div>
     <div class="content">
-      <Download v-show="contentShow === 1" />
-      <Favorate v-show="contentShow === 2" />
+      <Download v-if="contentShow === 1" />
+      <Favorate v-else-if="contentShow === 2" />
     </div>
   </div>
 </template>
