@@ -33,6 +33,7 @@ export default {
   name: 'paper',
   data() {
     return {
+      u_id: 0,
       result: [],
       // srcList: [],
       curUrl: '',
@@ -89,6 +90,41 @@ export default {
       }).catch((err) => {
         console.log(err)
       })
+    },
+    download() {
+      // var url = this.curUrl
+      // // a标签
+      // var a = document.createElement('a')
+      // // var click = new MouseEvent('click')
+      // a.download = this.result[this.curPos].id
+      // a.href = url
+      // a.click()
+      // 模拟下载
+      if(this.u_id === 0) {
+        this.$notify({
+          title: '失败',
+          message: '请先登录',
+          type: 'warning',
+          duration: 2000
+        })
+      } else {
+        this.axios.post('/api/download', {
+          u_id: this.u_id,
+          id: this.result[this.curPos].id,
+          wp_url: this.curUrl
+        }).then((res) => {
+          if(res.data.success === 1){
+            this.$notify({
+              title: '成功',
+              message: '下载成功',
+              type: 'success',
+              duration: 2000
+            })
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+      }
     }
   },
   mounted: function() {
@@ -110,7 +146,9 @@ export default {
   },
   computed: {
     getId() {
-      return this.$store.state.u_id
+      var id = this.$store.state.u_id
+      this.u_id = id
+      return id
     }
   }
 }

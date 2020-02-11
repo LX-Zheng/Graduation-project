@@ -12,7 +12,8 @@
       </ul>
     </div>
     <div class="content">
-      <Favorate v-show="contentShow===2" />
+      <Download v-show="contentShow === 1" />
+      <Favorate v-show="contentShow === 2" />
     </div>
   </div>
 </template>
@@ -24,11 +25,12 @@ export default {
   components: {
     Info,
     Favorate:resolve => require(['@/components/favorate'], resolve),
+    Download:resolve => require(['@/components/download'], resolve)
   },
   data () {
     return {
       choice: 'login',
-      contentShow: 0,
+      contentShow: 1,
       current: 0,
       content: ['下载管理', '我的收藏'],
       imgSrc: ['download', 'collection'],

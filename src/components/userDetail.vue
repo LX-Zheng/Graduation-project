@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="(m,index) in list" @click="change(index)" :key="m" :class="{isactive:index==cur}">
+      <li v-for="(m,index) in list" @click="change(index)" :key="m" style="line-height:40px">
         <div>{{m}}</div>
       </li>
     </ul>
@@ -11,7 +11,6 @@
 export default {
   data() {
     return {
-      cur: 0,
       list:['个人信息设置','退出登录']
     }
   },
@@ -24,10 +23,6 @@ export default {
 }
 </script>
 <style>
-.isactive{
-  color: red;
-  background-color: rgb(226, 226, 226);
-}
 ul,li{ 
   padding:0;
   margin:0;
