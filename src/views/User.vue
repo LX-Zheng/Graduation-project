@@ -12,8 +12,9 @@
       </ul>
     </div>
     <div class="content">
-      <Download v-if="contentShow === 1" />
+      <Recommend v-if="contentShow === 1" />
       <Favorate v-else-if="contentShow === 2" />
+      <Download v-else-if="contentShow === 3" />
     </div>
   </div>
 </template>
@@ -24,6 +25,7 @@ import Info from '@/components/info'
 export default {
   components: {
     Info,
+    Recommend:resolve => require(['@/components/recommend'], resolve),
     Favorate:resolve => require(['@/components/favorate'], resolve),
     Download:resolve => require(['@/components/download'], resolve)
   },
@@ -32,8 +34,8 @@ export default {
       choice: 'login',
       contentShow: 1,
       current: 0,
-      content: ['下载管理', '我的收藏'],
-      imgSrc: ['download', 'collection'],
+      content: ['发现壁纸', '我的收藏', '下载管理'],
+      imgSrc: ['discover', 'collection', 'download'],
     }
   },
   methods: {
@@ -46,11 +48,11 @@ export default {
 </script>
 <style>
 #user {
-  height: 500px;
-  width: 700px;
+  height: 600px;
+  width: 1000px;
 }
 .user_nav {
-  height: 500px;
+  height: 600px;
   width: 200px;
   background-color: rgb(237, 237, 237);
   float: left;
@@ -87,7 +89,7 @@ li:hover {
 }
 .content {
   float: right;
-  width: 500px;
+  width: 800px;
   height: 100%;
 }
 </style>
