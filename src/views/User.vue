@@ -34,7 +34,7 @@ export default {
       choice: 'login',
       contentShow: 1,
       current: 0,
-      content: ['发现壁纸', '我的收藏', '下载管理'],
+      content: ['每日推荐', '我的收藏', '下载管理'],
       imgSrc: ['discover', 'collection', 'download'],
     }
   },

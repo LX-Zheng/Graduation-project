@@ -34,3 +34,10 @@ export default {
   }
 }
 </script>
+<style>
+#favorate {
+  height: 630px;
+  /* width: 100%; */
+  overflow: scroll;
+}
+</style>

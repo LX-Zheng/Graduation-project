@@ -1,6 +1,6 @@
 <template>
   <div id="recommend">
-    <div class="icon left">
+    <!-- <div class="icon left">
       <i class="set el-icon-arrow-left" />
     </div>
     <el-card :body-style="{ padding: '3px' }" class="recard">
@@ -12,7 +12,7 @@
       <i class="set el-icon-arrow-right" />
     </div>
     <div class="icon download"><i class="set el-icon-download" /></div>
-    <div class="icon collection"><i class="set el-icon-star-off" /></div>
+    <div class="icon collection"><i class="set el-icon-star-off" /></div> -->
   </div>
 </template>
 <script>

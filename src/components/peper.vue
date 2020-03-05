@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="peper_context">
     <div v-for="(index,pos) in result" :key="pos">
       <el-card :body-style="{ padding: '3px' }" class="table" @click.native="open(index,pos)">
         <el-image
@@ -71,6 +71,7 @@ export default {
     },
     addlike() {
       this.axios.post('/api/addPaper', {
+        wp: this.result[this.curPos].wp,
         u_id: this.u_id,
         wp_id: this.result[this.curPos].id,
         wp_url: this.result[this.curPos].url
@@ -132,6 +133,7 @@ export default {
     this.axios.post(url, par).then((res) => {
       for(let d in res.data) {
         this.result.push({
+          wp: res.data[d].id,
           id: res.data[d].wp_id,
           url: res.data[d].wp_url,
           favorate: res.data[d].favorate
@@ -155,7 +157,7 @@ export default {
 <style scoped>
 .table {
   width: 200px;
-  height: 150px;
+  height: 128px;
   margin-top: 30px;
   margin-left: 30px;
   float: left;
@@ -241,5 +243,10 @@ export default {
 }
 .custom-icon-font{
   color: red
+}
+.peper_context {
+  height: 630px;
+  /* width: 100%; */
+  overflow: scroll;
 }
 </style>

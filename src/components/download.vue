@@ -31,5 +31,9 @@ export default {
 }
 </script>
 <style>
-
+#download {
+  height: 630px;
+  /* width: 100%; */
+  overflow: scroll;
+}
 </style>
