@@ -21,6 +21,22 @@ export default {
     return {
       src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
     }
+  },
+  created: function() {
+    this.axios.post('/api/getRec', {
+      u_id: this.$store.state.u_id
+    }).then((res) => {
+      // console.log(res.data)
+      for(let d in res.data) {
+        this.result.push({
+          id: res.data[d].wp_id,
+          url: res.data[d].wp_url
+        })
+      }
+      // console.log(this.result)
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 }
 </script>

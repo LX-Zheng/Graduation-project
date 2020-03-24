@@ -14,7 +14,7 @@ Vue.directive('start', {
         wp_id: binding.value.wp_id,
         u_id: binding.value.u_id
       }).then((res) => {
-        console.log(res)
+        // console.log(res)
       }).catch((err) => {
         console.log(err)
       })

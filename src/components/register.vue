@@ -40,7 +40,7 @@ export default {
           type: 'warning'
         })
       } else {
-        this.axios.get('/userReg', {
+        this.axios.get('/api/userReg', {
           params: {
             name: this.name,
             account: this.account,

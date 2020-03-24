@@ -42,8 +42,9 @@ export default {
           }
         }).then((response) => {
           if(response.data.status === 1) {
-            console.log(response.data.u_name)
+            // console.log(response)
             this.$store.dispatch('login', response.data.u_name)
+            this.$store.dispatch('changeId', response.data.id)
             this.$notify({
               title: '成功',
               message: '登录成功',

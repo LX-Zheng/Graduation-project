@@ -33,7 +33,7 @@ export default {
   name: 'paper',
   data() {
     return {
-      u_id: 0,
+      u_id: -1,
       result: [],
       // srcList: [],
       curUrl: '',
@@ -70,26 +70,35 @@ export default {
       }
     },
     addlike() {
-      this.axios.post('/api/addPaper', {
-        wp: this.result[this.curPos].wp,
-        u_id: this.u_id,
-        wp_id: this.result[this.curPos].id,
-        wp_url: this.result[this.curPos].url
-      }).then((res) => {
+      if(this.u_id !== -1){
+        this.axios.post('/api/addPaper', {
+          wp: this.result[this.curPos].wp,
+          u_id: this.u_id,
+          wp_id: this.result[this.curPos].id,
+          wp_url: this.result[this.curPos].url
+        }).then((res) => {
         // success is 0 execute delete
         // success is 1 execute add
-        if(res.data.success === '1'){
-          // document.getElementById('like').style.color = 'red'
-          this.result[this.curPos].favorate = true
-          this.isFavorate = true
-        }else{
-          // document.getElementById('like').style.color = 'black'
-          this.result[this.curPos].favorate = false
-          this.isFavorate = false
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
+          if(res.data.success === '1'){
+            // document.getElementById('like').style.color = 'red'
+            this.result[this.curPos].favorate = true
+            this.isFavorate = true
+          }else{
+            // document.getElementById('like').style.color = 'black'
+            this.result[this.curPos].favorate = false
+            this.isFavorate = false
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+      } else {
+        this.$notify({
+          title: '失败',
+          message: '请先登录',
+          type: 'warning',
+          duration: 2000
+        })
+      }
     },
     download() {
       // var url = this.curUrl
@@ -100,7 +109,7 @@ export default {
       // a.href = url
       // a.click()
       // 模拟下载
-      if(this.u_id === 0) {
+      if(this.u_id === -1) {
         this.$notify({
           title: '失败',
           message: '请先登录',
@@ -140,7 +149,7 @@ export default {
         })
         // this.srcList.push(res.data[d].wp_url)
       }
-      console.log(this.result)
+      // console.log(this.result)
     }).catch((err) => {
       console.log(err)
     })
@@ -149,6 +158,7 @@ export default {
     getId() {
       var id = this.$store.state.u_id
       this.u_id = id
+      // console.log(this.u_id)
       return id
     }
   }
