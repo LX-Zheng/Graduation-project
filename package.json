@@ -10,6 +10,8 @@
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps"
   },
+  "author": "deepin",
+  "description": "rimg",
   "main": "background.js",
   "dependencies": {
     "core-js": "^3.4.4",

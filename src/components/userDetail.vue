@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detail">
     <ul>
       <li v-for="(m,index) in list" @click="change(index)" :key="m" style="line-height:40px">
         <div>{{m}}</div>
@@ -43,5 +43,9 @@ li {
 }
 li:hover {
   background-color: rgb(231, 231, 231)
+}
+
+.detail{
+  height: 300px;
 }
 </style>

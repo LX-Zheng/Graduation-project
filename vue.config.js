@@ -18,5 +18,15 @@ module.exports = {
                 }
             }
         },
-    }
+    },
+    pluginOptions: {
+        electronBuilder: {
+          builderOptions: {
+            appId: 'deepin',
+            mac: {
+              icon: 'elogo.icns'
+            }
+          }
+        }
+      }
 }

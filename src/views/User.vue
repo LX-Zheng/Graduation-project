@@ -32,8 +32,8 @@ export default {
   data () {
     return {
       choice: 'login',
-      contentShow: 1,
-      current: 0,
+      contentShow: 0,
+      current: -1,
       content: ['每日推荐', '我的收藏', '下载管理'],
       imgSrc: ['discover', 'collection', 'download'],
     }
