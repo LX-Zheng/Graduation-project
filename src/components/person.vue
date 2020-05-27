@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     handle(o, index) {
-      var par = JSON.stringify({'type': this.well[index],'u_id': this.$store.state.u_id})
+      var par = JSON.stringify({'type': index,'u_id': this.$store.state.u_id})
       this.$router.push({
         path: '/paper',
         name: 'paper',

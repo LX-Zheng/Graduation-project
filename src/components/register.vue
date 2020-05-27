@@ -54,6 +54,9 @@ export default {
               message: '注册成功',
               type: 'success'
             })
+            this.name = ''
+            this.account = ''
+            this.password = ''
           }
         }).catch((err) => {
           console.log(err)

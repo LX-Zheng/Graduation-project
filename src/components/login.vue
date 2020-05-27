@@ -7,7 +7,7 @@
           <i class="el-icon-user" />
         </template>
       </el-input>
-      <el-input placeholder="请输入密码" v-model="password">
+      <el-input show-password="true" placeholder="请输入密码" v-model="password">
         <template slot="prepend">
           <i class="el-icon-lock" />
         </template>

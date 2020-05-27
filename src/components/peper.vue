@@ -109,31 +109,27 @@ export default {
       // a.href = url
       // a.click()
       // 模拟下载
-      if(this.u_id === -1) {
-        this.$notify({
-          title: '失败',
-          message: '请先登录',
-          type: 'warning',
-          duration: 2000
-        })
-      } else {
-        this.axios.post('/api/download', {
-          u_id: this.u_id,
-          id: this.result[this.curPos].id,
-          wp_url: this.curUrl
-        }).then((res) => {
-          if(res.data.success === 1){
-            this.$notify({
-              title: '成功',
-              message: '下载成功',
-              type: 'success',
-              duration: 2000
-            })
+      this.axios.post('/api/download', {
+        u_id: this.u_id,
+        id: this.result[this.curPos].id,
+        wp_url: this.curUrl
+      }).then((res) => {
+        if(res.data.success === 1){
+          this.$notify({
+            title: '成功',
+            message: '下载成功',
+            type: 'success',
+            duration: 2000
+          })
+          var url = this.curUrl
+          var a = document.createElement('a')
+          a.download = this.result[this.curPos].id
+          a.href = url
+          a.click()
         }
       }).catch((err) => {
         console.log(err)
       })
-      }
     }
   },
   mounted: function() {

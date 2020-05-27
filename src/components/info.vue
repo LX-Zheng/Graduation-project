@@ -7,7 +7,8 @@
       <el-card class="box_card">
         <Login @getChildData="getData" v-show="choice === 'login'" />
         <Register @getChildData="getData" v-show="choice === 'register'" />
-        <UserDetail v-show="choice === 'user'" />
+        <UserDetail @getChildData="getData" v-show="choice === 'user'" />
+        <Change @getChildData="getData" v-show="choice === 'change'" />
       </el-card>
     </div>
     <div id="box" class="black_overlay" @click="box_display"></div>
@@ -18,7 +19,8 @@ export default {
   components: {
     Login: resolve => require(['@/components/login'], resolve),
     Register: resolve => require(['@/components/register'], resolve),
-    UserDetail: resolve => require(['@/components/userDetail'],resolve)
+    UserDetail: resolve => require(['@/components/userDetail'],resolve),
+    Change: resolve => require(['@/components/change'], resolve)
   },
   data () {
     return {

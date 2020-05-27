@@ -24,7 +24,7 @@ export default {
       for(let d in res.data) {
         this.result.push({
           id: res.data[d].wp_id,
-          url: res.data[d].wp_url
+          url: "http://127.0.0.1:5000/photo/" + res.data[d].wp_id
         })
       }
       // console.log(this.result)

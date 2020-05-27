@@ -16,7 +16,12 @@ export default {
   },
   methods: {
     change(index){
-      if(index === 1) {
+      if(index === 0) {
+        // document.getElementById('content').style.display = "none"
+        // document.getElementById('box').style.display = "none"
+        this.$emit("getChildData", "change")
+      }
+      else if(index === 1) {
         this.$store.dispatch('login', '未登录')
         this.$store.dispatch('changeId', -1)
         this.$notify({
@@ -25,6 +30,9 @@ export default {
           type: 'success',
           duration: 2000
         })
+        this.$emit("getChildData", "login")
+        document.getElementById('content').style.display = "none"
+        document.getElementById('box').style.display = "none"
       }
     }
   },
